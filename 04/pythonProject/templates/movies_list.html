@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Movie List{% endblock %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <th>Film</th>
+        <th>Genre</th>
+        <th>Year</th>
+    </thead>
+    {% for movie in movies %}
+    <tr>
+        <td><a href="/movies/{{movie.ID}}">{{movie.Film}}</a></td>
+        <td>{{movie.Genre}}</td>
+        <td>{{movie.Year}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
