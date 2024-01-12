@@ -1,34 +1,39 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for, abort
+import math
+from flask import Flask, render_template, request, redirect, url_for, abort
 from MovieRepository import MovieRepository
 
 app = Flask(__name__)
 
 @app.route("/")
 def movie_list():
-    return render_template("movies_list.html", movies=movies.get_movies())
+    page = request.args.get('page', 0, type=int)
+    movies = movie_repository.get_movies(page)
+    last_page = movie_repository.get_last_page()
+    return render_template("movie_list.html", movies=movies, page=page, last_page=last_page)
 
-@app.route("/movies/<int:movie_id>", methods=["GET", "POST"])
+@app.route("/movies/<int:movie_id>")
 def single_movie(movie_id):
-    if request.method == "GET":
-        movie = movies.get_movie(movie_id)
-        if movie:
-            return render_template("single_movie.html", movie=movie)
-        else:
-            return abort(404)
-    elif request.method == "POST":
-        if movies.update(request.form):
-            return redirect(url_for("movie_list"))
-        else:
-            abort(404)
+    movie = movie_repository.get_movie(movie_id)
+    if movie:
+        return render_template("movie_edit.html", movie=movie)
+    else:
+        return abort(404)
 
-@app.route("/movies/delete/<int:movie_id>")
-def delete_movie(movie_id):
-    if movies.delete(movie_id):
+@app.route("/movies/save", methods=["POST"])
+def save_movie():
+    if movie_repository.update(request.form):
         return redirect(url_for("movie_list"))
     else:
         abort(404)
 
-movies = MovieRepository()
+@app.route("/movies/delete/<int:movie_id>")
+def delete_movie(movie_id):
+    if movie_repository.delete(movie_id):
+        return redirect(url_for("movie_list"))
+    else:
+        abort(404)
+
+movie_repository = MovieRepository()
 
 if __name__ == "__main__":
     app.run(port=8000, debug=True)

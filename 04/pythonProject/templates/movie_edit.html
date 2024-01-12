@@ -2,7 +2,7 @@
 {% block title %}Single Movie{% endblock %}
 {% block content %}
 <h1>Edit single Movie</h1>
-<form method="post" action="/movies/{{movie.ID}}">
+<form method="post" action="/movies/save">
   <input type="hidden" name="ID" value="{{movie.ID}}" />
   <div class="form-group">
     <label for="title">Title:</label>
@@ -14,6 +14,7 @@
       <option {% if movie['Genre'] == "Animation" %}selected{% endif %}>Animation</option>
       <option {% if movie['Genre'] == "Comedy" %}selected{% endif %}>Comedy</option>
       <option {% if movie['Genre'] == "Drama" %}selected{% endif %}>Drama</option>
+      <option {% if movie['Genre'] == "Fantasy" %}selected{% endif %}>Fantasy</option>
       <option {% if movie['Genre'] == "Romance" %}selected{% endif %}>Romance</option>
     </select>
   </div>
