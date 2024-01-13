@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  flask:
+    image: movies-flask
+    ports:
+      - 80:8000
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=secret
+      - DB_NAME=postgres
+
+  postgres:
+    image: postgres
+    hostname: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - movie-data:/var/lib/postgresql/data/
+
+volumes:
+  movie-data:
