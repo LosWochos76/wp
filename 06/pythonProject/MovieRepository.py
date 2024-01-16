@@ -3,23 +3,6 @@ import os
 from Shared import db, app
 from Movie import Movie
 
-def load_from_csv():
-    with app.app_context():
-        if Movie.query.count() > 0:
-            return
-        data = pd.read_csv('data/movies.csv')
-        for movie in data.to_dict(orient='records'):
-            obj = Movie(Film=movie['Film'],
-                        Genre=movie['Genre'],
-                        LeadStudio=movie['LeadStudio'],
-                        AudienceScore=float(movie['AudienceScore']),
-                        Profitability=float(movie['Profitability']),
-                        RottenTomatoes=float(movie['RottenTomatoes']),
-                        WorldwideGross=float(movie['WorldwideGross'][1:]),
-                        Year=int(movie['Year']))
-            db.session.add(obj)
-            db.session.commit()
-
 def get_movies(page=0):
     with app.app_context():
         return Movie.query.order_by(Movie.Film).offset(page*page_size).limit(page_size).all()
@@ -60,6 +43,7 @@ def update(values):
         else:
             return False
 
+
 page_size = 10
 
 db_host = os.environ.get('DB_HOST', 'localhost')
@@ -72,5 +56,16 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
-
-load_from_csv()
+    if Movie.query.count() == 0:
+        data = pd.read_csv('data/movies.csv')
+        for movie in data.to_dict(orient='records'):
+            obj = Movie(Film=movie['Film'],
+                        Genre=movie['Genre'],
+                        LeadStudio=movie['LeadStudio'],
+                        AudienceScore=float(movie['AudienceScore']),
+                        Profitability=float(movie['Profitability']),
+                        RottenTomatoes=float(movie['RottenTomatoes']),
+                        WorldwideGross=float(movie['WorldwideGross'][1:]),
+                        Year=int(movie['Year']))
+            db.session.add(obj)
+            db.session.commit()
