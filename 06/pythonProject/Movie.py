@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine, Column, Integer, String, Numeric
-from shared import db
+from sqlalchemy import Column, Integer, String, Numeric
+from Shared import db
 
 class Movie(db.Model):
     __tablename__ = 'movies'

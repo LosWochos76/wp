@@ -1,55 +1,29 @@
 import pandas as pd
-import math
 
-class MovieRepository:
-    def __init__(self):
-        self.load_from_csv()
-        self.generate_ids()
-        self.page_size = 10
+def get_movies(page=0):
+    return df.iloc[page*page_size:(page+1)*page_size].to_dict('records')
 
-    def load_from_csv(self):
-        data = pd.read_csv('data/movies.csv')
-        self.movies = data.to_dict(orient='records')
-        self.movies = sorted(self.movies, key=lambda x: x['Film'])
+def get_last_page():
+    return len(df) // page_size
 
-    def generate_ids(self):
-        id = 1
-        for film in self.movies:
-            film['ID'] = id
-            id = id + 1
+def get_movie(movie_id):
+    return df.loc[df['ID']==movie_id].to_dict('records')[0]
 
-    def get_movies(self, page=0):
-        return self.movies[page*self.page_size:(page+1)*self.page_size]
+def delete(movie_id):
+    global df
+    df = df[df['ID'] != movie_id]
 
-    def get_last_page(self):
-        return int(len(self.movies)/self.page_size)
+def update(values):
+    #pos = get_pos(int(values['ID']))
+    #for key, value in values.items():
+    #    movies[pos][key] = type(movies[pos][key])(value)
+    return True
 
-    def get_pos(self, movie_id):
-        for i in range(len(self.movies)):
-            if self.movies[i]['ID'] == movie_id:
-                return i
-        return -1
 
-    def get_movie(self, movie_id):
-        pos = self.get_pos(movie_id) # Die Funktion get_pos muss man auch realisieren
-        if pos > -1:
-            return self.movies[pos]
-        else:
-            return None
+page_size = 10
+df = pd.read_csv('data/movies.csv')
+df = df.sort_values(by=['Film'])
+df['ID'] = range(1, len(df)+1)
 
-    def delete(self, movie_id):
-        pos = self.get_pos(movie_id)
-        if pos > -1:
-            del self.movies[pos]
-            return True
-        else:
-            return False
-
-    def update(self, values):
-        pos = self.get_pos(int(values['ID']))
-        if pos == -1:
-            return False
-        for key, value in values.items():
-            self.movies[pos][key] = type(self.movies[pos][key])(value)
-        return True
-
+movies = df.to_dict(orient='records')
+movies = sorted(movies, key=lambda x: x['Film'])

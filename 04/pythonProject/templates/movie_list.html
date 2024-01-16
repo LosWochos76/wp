@@ -11,7 +11,7 @@
     </thead>
     {% for movie in movies %}
     <tr>
-        <td><a href="/movies/{{movie.ID}}">{{movie.Film}}</a></td>
+        <td><a href="/movies/{{movie['ID']}}">{{movie.Film}}</a></td>
         <td>{{movie.Genre}}</td>
         <td>{{movie.Year}}</td>
     </tr>
