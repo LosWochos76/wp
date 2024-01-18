@@ -1,9 +1,6 @@
 from Shared import app
 from flask import request, render_template, abort, redirect, url_for, Response
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-import io
 import MovieRepository
-
 
 @app.route("/")
 def movie_list():
@@ -36,10 +33,8 @@ def delete_movie(movie_id):
 
 @app.route('/movies/by-year-chart.png')
 def movies_by_year():
-    fig = MovieRepository.get_movies_by_year_as_fig()
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
+    figure_as_bytes = MovieRepository.get_movies_by_year_as_png()
+    return Response(figure_as_bytes, mimetype='image/png')
 
 @app.route('/movies/analyze-by-year')
 def analyze_by_year():

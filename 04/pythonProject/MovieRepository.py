@@ -1,5 +1,6 @@
 import pandas as pd
-import matplotlib.pyplot as plt
+import io
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 def get_movies(page=0):
     return df.iloc[page*page_size:(page+1)*page_size].to_dict('records')
@@ -33,10 +34,12 @@ def update(values):
     else:
         return False
 
-def get_movies_by_year_as_fig():
+def get_movies_by_year_as_png():
     by_years = df.groupby('Year')['Film'].count()
     ax = by_years.plot(kind='bar', stacked=True)
-    return ax.get_figure()
+    output = io.BytesIO()
+    FigureCanvas(ax.get_figure()).print_png(output)
+    return output.getvalue()
 
 page_size = 10
 df = pd.read_csv('data/movies.csv')
