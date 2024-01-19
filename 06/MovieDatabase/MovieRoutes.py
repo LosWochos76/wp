@@ -1,9 +1,11 @@
 from Shared import app
-from flask import render_template, request, redirect, url_for, abort
+from flask import render_template, request, redirect, url_for, abort, g
 import MovieRepository
 
 @app.route("/")
 def movie_list():
+    if g.user is None:
+        return redirect(url_for("login"))
     page = request.args.get('page', 0, type=int)
     movies = MovieRepository.get_movies(page)
     last_page = MovieRepository.get_last_page()

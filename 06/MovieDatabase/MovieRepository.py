@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 from Shared import db, app
 from Movie import Movie
 
@@ -43,29 +42,20 @@ def update(values):
         else:
             return False
 
+def init():
+    with app.app_context():
+        if Movie.query.count() == 0:
+            data = pd.read_csv('data/movies.csv')
+            for movie in data.to_dict(orient='records'):
+                obj = Movie(Film=movie['Film'],
+                            Genre=movie['Genre'],
+                            LeadStudio=movie['LeadStudio'],
+                            AudienceScore=float(movie['AudienceScore']),
+                            Profitability=float(movie['Profitability']),
+                            RottenTomatoes=float(movie['RottenTomatoes']),
+                            WorldwideGross=float(movie['WorldwideGross'][1:]),
+                            Year=int(movie['Year']))
+                db.session.add(obj)
+                db.session.commit()
 
 page_size = 10
-
-db_host = os.environ.get('DB_HOST', 'localhost')
-db_port = os.environ.get('DB_PORT', '5432')
-db_user = os.environ.get('DB_USER', 'postgres')
-db_password = os.environ.get('DB_PASSWORD', 'secret')
-db_name = os.environ.get('DB_NAME', 'postgres')
-app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
-db.init_app(app)
-
-with app.app_context():
-    db.create_all()
-    if Movie.query.count() == 0:
-        data = pd.read_csv('data/movies.csv')
-        for movie in data.to_dict(orient='records'):
-            obj = Movie(Film=movie['Film'],
-                        Genre=movie['Genre'],
-                        LeadStudio=movie['LeadStudio'],
-                        AudienceScore=float(movie['AudienceScore']),
-                        Profitability=float(movie['Profitability']),
-                        RottenTomatoes=float(movie['RottenTomatoes']),
-                        WorldwideGross=float(movie['WorldwideGross'][1:]),
-                        Year=int(movie['Year']))
-            db.session.add(obj)
-            db.session.commit()
