@@ -4,7 +4,10 @@ from Movie import Movie
 
 def get_movies(page=0):
     with app.app_context():
-        return Movie.query.order_by(Movie.Film).offset(page*page_size).limit(page_size).all()
+        return (Movie.query
+                .order_by(Movie.Film)
+                .offset(page*page_size)
+                .limit(page_size).all())
 
 def get_last_page():
     with app.app_context():
