@@ -1,6 +1,5 @@
 import os
 from Shared import app, db
-from flask import request, session, g
 import MovieRepository
 import MovieRoutes
 import UserRepository
@@ -20,13 +19,6 @@ with app.app_context():
 
 MovieRepository.init()
 UserRepository.init()
-
-@app.before_request
-def load_user():
-    if session.get("user_id") is not None:
-        g.user = UserRepository.get_user(session.get("user_id"))
-    else:
-        g.user = None
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
