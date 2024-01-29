@@ -14,8 +14,6 @@ def movie_list():
 @app.route("/movies/<int:movie_id>")
 @UserRepository.login_required
 def single_movie(movie_id):
-    if UserRepository.is_logged_out():
-        return redirect(url_for("login"))
     movie = MovieRepository.get_movie(movie_id)
     if movie:
         return render_template("movie_edit.html", movie=movie)
@@ -25,8 +23,6 @@ def single_movie(movie_id):
 @app.route("/movies/save", methods=["POST"])
 @UserRepository.login_required
 def save_movie():
-    if UserRepository.is_logged_out():
-        return redirect(url_for("login"))
     if MovieRepository.update(request.form):
         return redirect(url_for("movie_list"))
     else:

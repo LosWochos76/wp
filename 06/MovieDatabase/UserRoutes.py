@@ -21,3 +21,4 @@ def logout():
     if session.get("user_id") is not None:
         del session["user_id"]
     return redirect(url_for("login"))
+

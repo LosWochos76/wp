@@ -47,10 +47,10 @@ def hash_password(password):
 
 def login_required(function):
     @wraps(function)
-    def wrapper():
-        if is_logged_out():
+    def wrapper(*args, **kwargs):
+        if session.get("user_id") is None:
             return redirect(url_for("login"))
         else:
-            return function()
+            return function(*args, **kwargs)
 
     return wrapper
