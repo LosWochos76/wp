@@ -1,4 +1,3 @@
-import pytest
 import app
 
 def test_2():
@@ -11,10 +10,10 @@ def test_5():
     assert app.is_prime(5), "5 is a prime!"
 
 def test_9():
-    assert app.is_prime(9) == False, "9 is not a prime!"
+    assert app.is_prime(9) is False, "9 is not a prime!"
 
 def test_97():
     assert app.is_prime(97), "97 is a prime!"
 
 def test_100():
-    assert app.is_prime(100) == False, "100 is not a prime!"
+    assert app.is_prime(100) is False, "100 is not a prime!"

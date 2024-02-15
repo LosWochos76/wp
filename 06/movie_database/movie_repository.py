@@ -1,18 +1,18 @@
 import pandas as pd
-from Shared import db, app
-from Movie import Movie
+from shared import db, app
+from models import Movie
 
 def get_movies(page=0):
     with app.app_context():
         return (Movie.query
                 .order_by(Movie.Film)
-                .offset(page*page_size)
-                .limit(page_size).all())
+                .offset(page*PAGE_SIZE)
+                .limit(PAGE_SIZE).all())
 
 def get_last_page():
     with app.app_context():
         count = db.session.query(Movie).count()
-        return count//page_size
+        return count//PAGE_SIZE
 
 def get_movie(movie_id):
     with app.app_context():
@@ -25,8 +25,7 @@ def delete(movie_id):
             db.session.delete(movie)
             db.session.commit()
             return True
-        else:
-            return False
+        return False
 
 def update(values):
     with app.app_context():
@@ -35,15 +34,14 @@ def update(values):
             movie.Film = values['Film']
             movie.Genre = values['Genre']
             movie.LeadStudio = values['LeadStudio']
-            movie.AudienceScore = float(values['AudienceScore']),
-            movie.Profitability = float(values['Profitability']),
-            movie.RottenTomatoes = float(values['RottenTomatoes']),
+            movie.AudienceScore = float(values['AudienceScore'])
+            movie.Profitability = float(values['Profitability'])
+            movie.RottenTomatoes = float(values['RottenTomatoes'])
             movie.WorldwideGross = float(values['WorldwideGross'])
             movie.Year = int(values['Year'])
             db.session.commit()
             return True
-        else:
-            return False
+        return False
 
 def init():
     with app.app_context():
@@ -61,4 +59,4 @@ def init():
                 db.session.add(obj)
                 db.session.commit()
 
-page_size = 10
+PAGE_SIZE = 10

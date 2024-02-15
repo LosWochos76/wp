@@ -1,9 +1,8 @@
-import os
-from Shared import db, app
-from User import User
+from functools import wraps
 import hashlib
 from flask import session, g, redirect, url_for
-from functools import wraps
+from shared import db, app
+from models import User
 
 def by_email_and_password(email, password):
     email = email.lower()
@@ -28,8 +27,7 @@ def init():
 def load_user():
     if session.get("user_id") is not None:
         g.user = get_user(session.get("user_id"))
-    else:
-        g.user = None
+    g.user = None
 
 def current_user():
     return g.user
@@ -41,16 +39,15 @@ def is_logged_out():
     return current_user() is None
 
 def hash_password(password):
-   password_bytes = password.encode('utf-8')
-   hash_object = hashlib.sha256(password_bytes)
-   return hash_object.hexdigest()
+    password_bytes = password.encode('utf-8')
+    hash_object = hashlib.sha256(password_bytes)
+    return hash_object.hexdigest()
 
 def login_required(function):
     @wraps(function)
     def wrapper(*args, **kwargs):
         if session.get("user_id") is None:
             return redirect(url_for("login"))
-        else:
-            return function(*args, **kwargs)
+        return function(*args, **kwargs)
 
     return wrapper

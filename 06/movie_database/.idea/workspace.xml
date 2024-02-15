@@ -5,18 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13c04f33-13d2-409d-9245-93270e0dfd43" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/MovieDatabase.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../08/pythonTestProject/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../08/pythonTestProject/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../08/pythonTestProject/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../08/pythonTestProject/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../08/pythonTestProject/.idea/pythonTestProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../08/pythonTestProject/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../08/pythonTestProject/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../08/pythonTestProject/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../08/pythonTestProject/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MovieDatabase.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MovieDatabase.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Movie.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MovieRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MovieRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared.py" beforeDir="false" afterPath="$PROJECT_DIR$/shared.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/user_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/user_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../08/pythonTestProject/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../08/pythonTestProject/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../08/pythonTestProject/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../08/pythonTestProject/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,27 +47,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Flask server.pythonProject.executor&quot;: &quot;Run&quot;,
-    &quot;Python.MovieDatabase.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/stuckenholz/lehre/wp/src/06/MovieDatabase&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flask server.pythonProject.executor": "Run",
+    "Python.Lint.executor": "Run",
+    "Python.MovieDatabase.executor": "Run",
+    "Python.app.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/stuckenholz/lehre/wp/src/06/MovieDatabase",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Python.MovieDatabase">
-    <configuration name="MovieDatabase" type="PythonConfigurationType" factoryName="Python">
+}]]></component>
+  <component name="RunManager" selected="Python.Lint">
+    <configuration name="Lint" type="PythonConfigurationType" factoryName="Python">
       <module name="MovieDatabase" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -74,13 +77,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12 (pythonTestProject)" />
+      <option name="SDK_NAME" value="Python 3.12 (MovieDatabase)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="SCRIPT_NAME" value="pylint ." />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -90,7 +93,7 @@
       <method v="2" />
     </configuration>
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="pythonProject" />
+      <module name="MovieDatabase" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,8 +101,9 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12 (MovieDatabase)" />
       <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -112,26 +116,9 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pythonProject" type="Python.FlaskServer">
-      <module name="pythonProject" />
-      <option name="target" value="$PROJECT_DIR$/Shared.py" />
-      <option name="targetType" value="PATH" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Flask server.pythonProject" />
       <item itemvalue="Python.app" />
-      <item itemvalue="Python.MovieDatabase" />
+      <item itemvalue="Python.Lint" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -156,6 +143,7 @@
       <workItem from="1706976290632" duration="268000" />
       <workItem from="1707747965656" duration="555000" />
       <workItem from="1707748695931" duration="632000" />
+      <workItem from="1707994438271" duration="1437000" />
     </task>
     <servers />
   </component>
@@ -163,8 +151,9 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/MovieDatabase$app.coverage" NAME="app Coverage Results" MODIFIED="1706536484293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/MovieDatabase$Lint.coverage" NAME="Lint Coverage Results" MODIFIED="1707995596000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/MovieDatabase$app.coverage" NAME="app Coverage Results" MODIFIED="1707995551448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/MovieDatabase$pythonProject.coverage" NAME="pythonProject Coverage Results" MODIFIED="1706521664432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/MovieDatabase$MovieDatabase.coverage" NAME="MovieDatabase Coverage Results" MODIFIED="1707748925432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/MovieDatabase$MovieDatabase.coverage" NAME="MovieDatabase Coverage Results" MODIFIED="1707994476392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

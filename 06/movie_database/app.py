@@ -1,11 +1,11 @@
 import os
 import time
-
-from Shared import app, db
-import MovieRepository
-import MovieRoutes
-import UserRepository
-import UserRoutes
+from shared import app, db
+import movie_repository
+import user_repository
+# pylint: disable=import-error
+import movie_routes
+import user_routes
 
 def create_app():
     db_host = os.environ.get('DB_HOST', 'localhost')
@@ -13,7 +13,9 @@ def create_app():
     db_user = os.environ.get('DB_USER', 'postgres')
     db_password = os.environ.get('DB_PASSWORD', 'secret')
     db_name = os.environ.get('DB_NAME', 'postgres')
-    app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+    app.config["SQLALCHEMY_DATABASE_URI"] = (f"postgresql://{db_user}:"
+                                             f"{db_password}@{db_host}:"
+                                             f"{db_port}/{db_name}")
     app.secret_key = os.environ.get('SECRET_KEY', 'nFt9lwYwzU')
     db.init_app(app)
 
@@ -22,10 +24,10 @@ def create_app():
             with app.app_context():
                 db.create_all()
 
-            MovieRepository.init()
-            UserRepository.init()
+            movie_repository.init()
+            user_repository.init()
             return app
-        except Exception as e:
+        except Exception:
             app.logger.error("Could not connect to DB!")
             time.sleep(0.5)
 
