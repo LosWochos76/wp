@@ -1,19 +1,18 @@
-import pandas as pd
 import io
+import pandas as pd
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 def get_movies(page=0):
-    return df.iloc[page*page_size:(page+1)*page_size].to_dict('records')
+    return df.iloc[page * PAGE_SIZE:(page + 1) * PAGE_SIZE].to_dict('records')
 
 def get_last_page():
-    return len(df) // page_size
+    return len(df) // PAGE_SIZE
 
 def get_movie(movie_id):
     index = df[df['ID'] == int(movie_id)].index
     if index.any():
         return df.loc[index].to_dict('records')[0]
-    else:
-        return None
+    return None
 
 def delete(movie_id):
     global df
@@ -21,8 +20,7 @@ def delete(movie_id):
     if index.any():
         df = df[index]
         return True
-    else:
-        return False
+    return False
 
 def update(values):
     global df
@@ -31,8 +29,7 @@ def update(values):
         for key, value in values.items():
             df.loc[index, key] = pd.Series(value).astype(df[key].dtype).item()
         return True
-    else:
-        return False
+    return False
 
 def get_movies_by_year_as_png():
     by_years = df.groupby('Year')['Film'].count()
@@ -41,7 +38,7 @@ def get_movies_by_year_as_png():
     FigureCanvas(ax.get_figure()).print_png(output)
     return output.getvalue()
 
-page_size = 10
+PAGE_SIZE = 10
 df = pd.read_csv('data/movies.csv')
 df = df.sort_values(by=['Film'])
-df['ID'] = range(1, len(df)+1)
+df['ID'] = range(1, len(df) + 1)
