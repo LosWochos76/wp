@@ -1,4 +1,5 @@
-import app
+import pytest
+from test_project import app
 
 def test_2():
     assert app.is_prime(2), "2 is a prime!"

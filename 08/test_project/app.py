@@ -1,7 +1,4 @@
-"""This module collects some methods to show how to use pytest."""
-
 def is_prime(number):
-    '''Takes in a positive number and checks if it is a prime'''
     if number < 2:
         return False
 
