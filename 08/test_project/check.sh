@@ -1,4 +1,5 @@
 #!/bin/sh
 
-pytest --cov=test_project .
 pylint . --disable=C0111
+pytest --cov=test_project --cov-fail-under=90 --cov-branch .
+
