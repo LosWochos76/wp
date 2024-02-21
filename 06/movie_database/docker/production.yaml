@@ -12,7 +12,7 @@ services:
       - movie-data:/var/lib/postgresql/data/
 
   flask:
-    image: movies-flask
+    image: stuckenholz/movies-flask:latest
     ports:
       - 80:80
     environment:

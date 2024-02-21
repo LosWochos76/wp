@@ -1,14 +1,17 @@
-from sqlalchemy import Column, Integer, String, Numeric
-from shared import db
+from sqlalchemy import MetaData, Integer, String, Numeric, Column
+from sqlalchemy.ext.declarative import declarative_base
 
-class User(db.Model):
+metadata = MetaData()
+Base = declarative_base(metadata=metadata)
+
+class User(Base):
     __tablename__ = 'users'
     ID=Column(Integer, primary_key=True)
     Email=Column('Email', String(100))
     PasswordHash=Column('PasswordHash', String(200))
     Role=Column('Role', Numeric)
 
-class Movie(db.Model):
+class Movie(Base):
     __tablename__ = 'movies'
     ID=Column(Integer, primary_key=True)
     Film=Column('Film', String(100))
