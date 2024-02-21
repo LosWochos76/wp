@@ -1,6 +1,6 @@
 import pytest
 from test_project import app
-
+from pytest_mock import MockFixture
 
 def test_2():
     assert app.is_prime(2), "2 is a prime!"
