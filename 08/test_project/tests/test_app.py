@@ -7,8 +7,14 @@ def test_2():
 def test_3():
     assert app.is_prime(3), "3 is a prime!"
 
+def test_4():
+    assert app.is_prime(4) is False, "4 is not a prime!"
+
 def test_5():
     assert app.is_prime(5), "5 is a prime!"
+
+def test_6():
+    assert app.is_prime(6) is False, "6 is not a prime!"
 
 def test_9():
     assert app.is_prime(9) is False, "9 is not a prime!"
