@@ -6,9 +6,11 @@ app = Flask(__name__)
 @app.route("/")
 def root():
     return "<h1>Hello World!</h1>"
+
 @app.route('/username/<username>')
 def username(username):
     return f"Your username is {username}"
+
 @app.route("/json")
 def json():
     data = {'name': 'alex', 'age': 48}
